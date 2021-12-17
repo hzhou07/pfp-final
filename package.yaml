@@ -2,9 +2,9 @@ name:                pfp-final-project
 version:             0.1.0.0
 github:              "githubuser/pfp-final-project"
 license:             BSD3
-author:              Rui Qiu, Hao Zhou
-maintainer:          rq2170@columbia.edu, hz2754@columbia.edu
-copyright:           @2021 Rui Qiu, Hao Zhou 
+author:              "Rui Qiu, Hao Zhou"
+maintainer:          "rq2170@columbia.edu, hz2754@columbia.edu"
+copyright:           "@2021 Rui Qiu, Hao Zhou" 
 
 extra-source-files:
 - README.md
