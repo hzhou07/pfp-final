@@ -9,7 +9,9 @@ with open ("musae_git_edges.csv") as f:
         s = l[:-1].split(',')[0]
         t = l[:-1].split(',')[1]
         edges[s].append(t)
+        edges[t].append(s)
 
 #print(edges)
 for e in edges.keys():
+    #print(e + str(edges[e]))
     print(e + " "+ " ".join(edges[e]))
