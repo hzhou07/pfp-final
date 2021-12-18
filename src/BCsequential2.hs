@@ -94,7 +94,7 @@ calculatePerNode :: Int -> Graph -> Map.Map Int Double
 calculatePerNode node g = Map.map (/ 2.0) resultMap
     where
       resultMap = accumulateCB (Map.fromList iniListIntDouble) node (Map.fromList iniListIntDouble) prede sigma (reverse s)
-      (prede,sigma,s) = calculateSigmaAndSoOn g (Set.fromList [node]) [] Set.empty (Map.fromList iniListPred) (Map.fromList iniListSigma)
+      (prede,sigma,s) = calculateSigmaAndSoOn g (Set.fromList [node]) [] Set.empty (Map.fromList iniListPred) (Map.insert node 1 (Map.fromList iniListSigma))
         
           
 
