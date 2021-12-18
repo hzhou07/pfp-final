@@ -14,7 +14,6 @@ shortestPath :: Graph -> Int -> Int -> Int -- graph start end -> shortestdistanc
 shortestPath g s e = bfs e g (Set.fromList [s]) [] 0
 
 
-
 bfs:: Int -> Graph -> Set.Set Int -> [Int] -> Int -> Int
 bfs target g frontier explored depth
     | Set.member target frontier = depth
