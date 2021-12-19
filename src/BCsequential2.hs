@@ -16,6 +16,7 @@ shortestPath g s e = bfs e g (Set.fromList [s]) [] 0
 
 bigG :: Graph
 bigG =  sampleG
+{-
 nodelist :: [Int]
 nodelist = Map.keys bigG
 iniListPred :: [(Int, [Int])]
@@ -24,7 +25,7 @@ iniListSigma :: [(Int, Int)]
 iniListSigma = map (\x -> (x,0)) nodelist
 iniListIntDouble :: [(Int, Double)]
 iniListIntDouble = map (\x -> (x,0.0)) nodelist
-
+-}
 
 bfs:: Int -> Graph -> Set.Set Int -> [Int] -> Int -> Int
 bfs target g frontier explored depth
@@ -90,13 +91,28 @@ accumulateCB cb start delta prede sigma (w:ws) = accumulateCB cbNew start deltaN
               
           
 
-calculatePerNode :: Int -> Graph -> Map.Map Int Double
-calculatePerNode node g = Map.map (/ 2.0) resultMap
+calculatePerNode :: Graph -> [(Int, [Int])] -> [(Int, Int)] -> [(Int, Double)] -> Int ->Map.Map Int Double
+calculatePerNode g iniListPred iniListSigma iniListIntDouble node = Map.map (/ 2.0) resultMap
     where
       resultMap = accumulateCB (Map.fromList iniListIntDouble) node (Map.fromList iniListIntDouble) prede sigma (reverse s)
       (prede,sigma,s) = calculateSigmaAndSoOn g (Set.fromList [node]) [] Set.empty (Map.fromList iniListPred) (Map.insert node 1 (Map.fromList iniListSigma))
         
-          
+
+bcSolver :: Graph -> Map.Map Int Double
+bcSolver g = foldl (Map.unionWith (+)) Map.empty bcMapList
+    where
+      bcMapList::[Map.Map Int Double]
+      bcMapList = map (calculatePerNode g iniListPred iniListSigma iniListIntDouble) nodelist
+      nodelist :: [Int]
+      nodelist = Map.keys g
+      iniListPred :: [(Int, [Int])]
+      iniListPred = map (\x -> (x,[])) nodelist
+      iniListSigma :: [(Int, Int)]
+      iniListSigma = map (\x -> (x,0)) nodelist
+      iniListIntDouble :: [(Int, Double)]
+      iniListIntDouble = map (\x -> (x,0.0)) nodelist
+      
+
 
            
 
