@@ -49,11 +49,11 @@ calculateSigmaAndSoOn g frontier s explored prede sigma
         newFrontier = Set.fromList (concatMap findchild (Set.toList frontier))
         newS = s ++ Set.toList frontier
         newExplored = Set.union explored frontier
-        (newPred, newSigma ) = updatePredSigma prede sigma (Set.toList frontier)    
+        (newPred, newSigma) = updatePredSigma prede sigma (Set.toList frontier)    
         findchild :: Int -> [Int]
         findchild i
           | Map.lookup i g == Nothing = error "invalid key for lookup"
-          | otherwise = filter (\neighbor-> Set.notMember neighbor explored) adjList
+          | otherwise = filter (\neighbor-> Set.notMember neighbor newExplored) adjList
             where (Just adjList) = Map.lookup i g
         updatePredSigma :: Map.Map Int [Int] -> Map.Map Int Int -> [Int] ->(Map.Map Int [Int], Map.Map Int Int)
         updatePredSigma p1 s1 [] = (p1, s1)

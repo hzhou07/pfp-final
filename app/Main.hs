@@ -18,8 +18,8 @@ main = do args <- getArgs
                   rawLines = lines contents -- [String] -> [(int,[int])] 
               case version of
                    "sequential" -> do print version
-                                      print $ bcSolver inputMap
-                   "parallel" -> print $ bcSolverPar inputMap
+                                      print $ length $ bcSolver inputMap
+                   "parallel" -> print $ length $ bcSolverPar inputMap
                    _ -> die $ "Usage: Choose correct version (sequential / parallel)"
             _ -> do pn <- getProgName
                     die $ "Usage: "++pn++"<version> <filename>"
