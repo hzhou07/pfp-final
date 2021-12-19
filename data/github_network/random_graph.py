@@ -1,7 +1,7 @@
 import networkx as nx
 from collections import defaultdict
 
-g = nx.generators.random_graphs.powerlaw_cluster_graph(100,5,0.2, seed = 0) 
+g = nx.generators.random_graphs.powerlaw_cluster_graph(1000,5,0.2, seed = 0) 
 
 es = defaultdict(list)
 for e in g.edges:
