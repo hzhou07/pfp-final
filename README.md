@@ -2,4 +2,4 @@
 
 - stack setup
 - stack build
-- stack run -- "sequential"
+- stack run -- "sequential" adj_list.txt +RTS -ls -N1
