@@ -4,11 +4,10 @@ import System.Exit(die)
 import System.Environment(getArgs, getProgName)
 import qualified Data.Map.Strict as Map
 
-import BCsequential2
+import BCsequential
 import BCparallel
 
 main :: IO ()
---main = someFunc
 main = do args <- getArgs
           case args of
             [version,filename] -> do
@@ -19,7 +18,8 @@ main = do args <- getArgs
               case version of
                    "sequential" -> do print version
                                       print $ length $ bcSolver inputMap
-                   "parallel" -> print $ length $ bcSolverPar inputMap
+                   "parallel" -> do print version
+                                    print $ length $ bcSolverPar inputMap
                    _ -> die $ "Usage: Choose correct version (sequential / parallel)"
             _ -> do pn <- getProgName
                     die $ "Usage: "++pn++"<version> <filename>"

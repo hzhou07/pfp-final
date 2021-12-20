@@ -1,11 +1,9 @@
 module BCparallel where
 
-import BCsequential2
+import BCsequential
 import BasicType
 
 import qualified Data.Map.Strict as Map
--- import System.Environment
--- import Data.Maybe
 import Control.Parallel.Strategies
 
 myparMap :: (a -> b) -> [a] -> Eval [b]
